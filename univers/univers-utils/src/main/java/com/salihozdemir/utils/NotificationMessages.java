@@ -12,7 +12,13 @@ public enum NotificationMessages {
 	STUDENT_SAVE_VALIDATION_ERROR_DESCRIPTION("Fields must be filled!"), //
 	
 	STUDENT_REMOVE_SUCCESS_TITLE("REMOVE"), //
-	STUDENT_REMOVE_SUCCESS_DESCRIPTION("Student(s) successfully removed!");
+	STUDENT_REMOVE_SUCCESS_DESCRIPTION("Student(s) successfully removed!"), 
+	
+	UNIVERSITY_SAVED_VALIDATION_ERROR_TITLE("ERROR"),
+	UNIVERSITY_SAVED_VALIDATION_ERROR_DESCRIPTION("Fields must be field!"),
+	
+	UNIVERSITY_SAVE_SUCCESS_TITLE("SAVE"),
+	UNIVERSITY_SAVE_SUCCESS_DESCRIPTION("Universtiy saved successfully!");
 	
 	private final String string;
 	

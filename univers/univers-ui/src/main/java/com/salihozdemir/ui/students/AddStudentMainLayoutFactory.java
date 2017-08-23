@@ -1,9 +1,13 @@
 package com.salihozdemir.ui.students;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.salihozdemir.model.entity.Student;
+import com.salihozdemir.model.entity.University;
 import com.salihozdemir.service.addstudent.AddStudentService;
+import com.salihozdemir.service.showalluniversities.ShowAllUniversitiesService;
 import com.salihozdemir.utils.Gender;
 import com.salihozdemir.utils.NotificationMessages;
 import com.salihozdemir.utils.StringUtils;
@@ -55,6 +59,7 @@ public class AddStudentMainLayoutFactory {
 			lastName = new TextField(StringUtils.LAST_NAME.getString());
 			age = new TextField(StringUtils.AGE.getString());
 			gender = new ComboBox(StringUtils.GENDER.getString());
+			
 			university = new ComboBox(StringUtils.UNIVERSITY.getString());
 			university.setWidth("100%");
 
@@ -113,6 +118,14 @@ public class AddStudentMainLayoutFactory {
 
 		private void save() {
 
+			if ( !isSaveOperationValid() ) {
+				
+				Notification.show(NotificationMessages.STUDENT_SAVE_VALIDATION_ERROR_TITLE.getString(),
+						NotificationMessages.STUDENT_SAVE_VALIDATION_ERROR_DESCRIPTION.getString(), Type.ERROR_MESSAGE);
+				
+				return;
+			}
+			
 			try {
 				fieldGroup.commit();
 			} catch (CommitException e) {
@@ -138,12 +151,28 @@ public class AddStudentMainLayoutFactory {
 			gender.setValue(null);
 			university.setValue(null);
 		}
+
+		private boolean isSaveOperationValid() {
+			
+			return showAllUniversitiesService.getAllUniversities().size() != 0;
+		}
+		
+		public AddStudentMainLayout load() {
+
+			List<University> universities = showAllUniversitiesService.getAllUniversities();
+			university.addItems(universities);
+			
+			return this;
+		}
 	}
 
+	@Autowired
+	private ShowAllUniversitiesService showAllUniversitiesService;
+	
 	@Autowired
 	private AddStudentService addStudentService;
 
 	public Component createComponent(StudentSavedListener studentSavedListener) {
-		return new AddStudentMainLayout(studentSavedListener).init().bind().layout();
+		return new AddStudentMainLayout(studentSavedListener).init().load().bind().layout();
 	}
 }

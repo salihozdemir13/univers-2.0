@@ -2,38 +2,54 @@ package com.salihozdemir.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="STUDENT")
+@Table(name = "STUDENT")
 public class Student {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
 
 	@NotNull(message = "You have to specify first name!")
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
 	@NotNull(message = "You have to specify last name!")
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
 	@NotNull(message = "You have to specify age!")
-	@Column(name="age")
+	@Column(name = "age")
 	private Integer age;
 
 	@NotNull(message = "Gender must be set!")
-	@Column(name="gender")
+	@Column(name = "gender")
 	private String gender;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "university_id")
+	@NotNull(message = "University must not be null!")
+	private University university;
 
 	public Student() {
 
+	}
+
+	public University getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(University university) {
+		this.university = university;
 	}
 
 	public String getFirstName() {
