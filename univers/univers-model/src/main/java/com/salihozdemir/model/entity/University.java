@@ -8,28 +8,36 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="UNIVERSITY")
+@Table(name = "UNIVERSITY")
 public class University {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
-	
-	@Column(name="university_name")
-	@NotNull(message="Cannot be null!")
+
+	@Column(name = "university_name")
+	@NotNull(message = "Cannot be null!")
 	private String universityName;
-	
-	@Column(name="university_country")
-	@NotNull(message="Cannot be null!")
+
+	@Column(name = "university_country")
+	@NotNull(message = "Cannot be null!")
 	private String universityCountry;
-	
-	@Column(name="university_city")
-	@NotNull(message="Cannot be null!")
+
+	@Column(name = "university_city")
+	@NotNull(message = "Cannot be null!")
 	private String universityCity;
 
 	public University() {
 
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getUniversityName() {
@@ -61,5 +69,5 @@ public class University {
 
 		return this.universityName;
 	}
-	
+
 }
