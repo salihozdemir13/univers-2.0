@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.salihozdemir.model.entity.Student;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student,Integer>{
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	@Query("select s from Student s order by s.firstName")
 	List<Student> getAllStudents();
-	
+
+	List<Student> findByLastNameStartsWithIgnoreCase(String lastName);
 }

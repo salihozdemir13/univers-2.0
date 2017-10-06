@@ -23,6 +23,9 @@ public class StudentLayoutFactory extends VerticalLayout implements View, Studen
 	@Autowired
 	private ShowAllStudentsLayoutFactory showStudentsLayoutFactory;
 	
+	@Autowired
+	private EditStudentLayoutFactory editStudentLayoutFactory;
+	
 	private TabSheet tabSheet;
 
 	private void addLayout() {
@@ -34,9 +37,11 @@ public class StudentLayoutFactory extends VerticalLayout implements View, Studen
 		
 		Component addStudentMainTab = mainLayoutFactory.createComponent(this);
 		Component showStudentsTab = showStudentsLayoutFactory.createComponent();
+		Component editStudentsTab = editStudentLayoutFactory.createComponent();
 		
 		tabSheet.addTab(addStudentMainTab, StringUtils.MAIN_MENU.getString());
 		tabSheet.addTab(showStudentsTab, StringUtils.SHOW_ALL_STUDENTS.getString());
+		tabSheet.addTab(editStudentsTab, StringUtils.EDIT_STUDENT.getString());
 		
 		addComponent(tabSheet);
 	}
@@ -44,6 +49,7 @@ public class StudentLayoutFactory extends VerticalLayout implements View, Studen
 	public void studentSaved() {
 
 		showStudentsLayoutFactory.refreshTable();
+//		editStudentLayoutFactory.refreshTable();
 	}
 	
 	public void enter(ViewChangeEvent event) {

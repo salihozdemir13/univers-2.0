@@ -21,4 +21,5 @@ public class ShowAllUniversitiesServiceImpl implements ShowAllUniversitiesServic
 		return universityRepository.getAllUniversities();
 
 	}
+
 }

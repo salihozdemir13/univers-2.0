@@ -4,6 +4,7 @@ public enum StringUtils {
 
 	MAIN_MENU("MAIN MENU"), //
 	SHOW_ALL_STUDENTS("SHOW ALL STUDENTS"), //
+	EDIT_STUDENT("EDIT STUDENTS"),//
 	FIRST_NAME("First name"), //
 	LAST_NAME("Last name"), //
 	AGE("Age"), //
@@ -23,9 +24,7 @@ public enum StringUtils {
 
 	MENU_ADD_UNIVERSITY("ADD UNIVERSITY"), //
 	MENU_SHOW_UNIVERSITY("SHOW ALL UNIVERSITIES"), //
-	MENU_CHART_UNIVERSITY("STATISTICS"),//
-
-	;
+	MENU_CHART_UNIVERSITY("STATISTICS");
 
 	private final String string;
 

@@ -26,6 +26,8 @@ import com.vaadin.ui.themes.ValoTheme;
 @SpringView(name = RemoveStudentLayoutFactory.NAME, ui = UniversMainUI.class)
 public class RemoveStudentLayoutFactory extends VerticalLayout implements View, Button.ClickListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	public static final String NAME = "removestudent";
 	private Grid removeStudentTable;
 	private Button removeStudentsButton;
@@ -45,11 +47,11 @@ public class RemoveStudentLayoutFactory extends VerticalLayout implements View, 
 		BeanItemContainer<Student> container = new BeanItemContainer<Student>(Student.class, students);
 
 		removeStudentTable = new Grid(container);
-		removeStudentTable.setColumnOrder("firstName", "lastName", "age", "gender");
+		removeStudentTable.setColumnOrder("firstName", "lastName", "age", "gender", "university");
 		removeStudentTable.removeColumn("id");
-		removeStudentTable.removeColumn("university");
 		removeStudentTable.setImmediate(true);
 		removeStudentTable.setSelectionMode(SelectionMode.MULTI);
+		removeStudentTable.setWidth("85%");
 
 		removeStudentsButton.addClickListener(this);
 		removeStudentsButton.setStyleName(ValoTheme.BUTTON_FRIENDLY);

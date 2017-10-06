@@ -28,7 +28,7 @@ public class UniversMenuFactory implements UIComponentBuilder {
 
 		public UniversMenu layout() {
 
-			setWidth("100%");
+			setWidth("80%");
 			setHeightUndefined();
 
 			mainMenu.addItem(StringUtils.MENU_STUDENTS.getString());
@@ -64,10 +64,11 @@ public class UniversMenuFactory implements UIComponentBuilder {
 
 			String selectedItemPath = (String) event.getProperty().getValue();
 
-			if (selectedItemPath == null) return;
+			if (selectedItemPath == null)
+				return;
 
 			if (selectedItemPath.equals("Logout")) {
-				
+
 				SecurityContextHolder.clearContext();
 				UI.getCurrent().getPage().setLocation("/univers-web/login");
 			}

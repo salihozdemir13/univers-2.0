@@ -35,7 +35,7 @@ public class Student {
 	@Column(name = "gender")
 	private String gender;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "university_id")
 	@NotNull(message = "University must not be null!")
 	private University university;
@@ -43,6 +43,11 @@ public class Student {
 	public Student() {
 
 	}
+
+//	public Student(String firstName, String lastName) {
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//	}
 
 	public University getUniversity() {
 		return university;
@@ -94,6 +99,6 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return this.firstName + "-" + this.lastName + "-" + this.age;
+		return String.format("Student[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
 	}
 }

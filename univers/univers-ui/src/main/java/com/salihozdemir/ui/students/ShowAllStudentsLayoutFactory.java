@@ -20,6 +20,8 @@ public class ShowAllStudentsLayoutFactory implements UIComponentBuilder {
 
 	private class ShowAllStudentsLayout extends VerticalLayout {
 
+		private static final long serialVersionUID = 1L;
+		
 		private Grid studentsTable;
 
 		public ShowAllStudentsLayout init() {
@@ -29,7 +31,6 @@ public class ShowAllStudentsLayoutFactory implements UIComponentBuilder {
 			studentsTable = new Grid(container);
 			studentsTable.setColumnOrder("firstName", "lastName", "age", "gender");
 			studentsTable.removeColumn("id");
-			studentsTable.removeColumn("university");
 			studentsTable.setImmediate(true);
 
 			return this;
@@ -46,7 +47,6 @@ public class ShowAllStudentsLayoutFactory implements UIComponentBuilder {
 			addComponent(studentsTable);
 			return this;
 		}
-
 	}
 
 	public void refreshTable() { //observer pattern

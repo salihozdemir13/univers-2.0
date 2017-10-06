@@ -44,7 +44,7 @@ public class AddStudentMainLayoutFactory {
 		private Student student;
 
 		private StudentSavedListener studentSavedListener;
-		
+
 		public AddStudentMainLayout(StudentSavedListener studentSavedListener) {
 
 			this.studentSavedListener = studentSavedListener;
@@ -59,7 +59,7 @@ public class AddStudentMainLayoutFactory {
 			lastName = new TextField(StringUtils.LAST_NAME.getString());
 			age = new TextField(StringUtils.AGE.getString());
 			gender = new ComboBox(StringUtils.GENDER.getString());
-			
+
 			university = new ComboBox(StringUtils.UNIVERSITY.getString());
 			university.setWidth("100%");
 
@@ -89,11 +89,10 @@ public class AddStudentMainLayoutFactory {
 
 		public Component layout() {
 
-			setMargin(true);
-
 			GridLayout layout = new GridLayout(2, 4);
 			layout.setSizeUndefined();
 			layout.setSpacing(true);
+			layout.setMargin(true);
 
 			layout.addComponent(firstName, 0, 0);
 			layout.addComponent(lastName, 1, 0);
@@ -118,14 +117,14 @@ public class AddStudentMainLayoutFactory {
 
 		private void save() {
 
-			if ( !isSaveOperationValid() ) {
-				
+			if (!isSaveOperationValid()) {
+
 				Notification.show(NotificationMessages.STUDENT_SAVE_VALIDATION_ERROR_TITLE.getString(),
 						NotificationMessages.STUDENT_SAVE_VALIDATION_ERROR_DESCRIPTION.getString(), Type.ERROR_MESSAGE);
-				
+
 				return;
 			}
-			
+
 			try {
 				fieldGroup.commit();
 			} catch (CommitException e) {
@@ -138,7 +137,7 @@ public class AddStudentMainLayoutFactory {
 			addStudentService.saveStudent(student);
 			studentSavedListener.studentSaved();
 			clearFields();
-			
+
 			Notification.show(NotificationMessages.STUDENT_SAVE_SUCCESS_TITLE.getString(),
 					NotificationMessages.STUDENT_SAVE_SUCCESS_DESCRIPTION.getString(), Type.WARNING_MESSAGE);
 
@@ -153,22 +152,22 @@ public class AddStudentMainLayoutFactory {
 		}
 
 		private boolean isSaveOperationValid() {
-			
+
 			return showAllUniversitiesService.getAllUniversities().size() != 0;
 		}
-		
+
 		public AddStudentMainLayout load() {
 
 			List<University> universities = showAllUniversitiesService.getAllUniversities();
 			university.addItems(universities);
-			
+
 			return this;
 		}
 	}
 
 	@Autowired
 	private ShowAllUniversitiesService showAllUniversitiesService;
-	
+
 	@Autowired
 	private AddStudentService addStudentService;
 
